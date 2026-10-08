@@ -1,4 +1,5 @@
-
+from stats import get_word_count
+# 
 def main():
     book_to_examine = "./books/frankenstein.txt"
     with open(book_to_examine) as f:
@@ -7,13 +8,14 @@ def main():
         # print(f"The word count is {get_word_count(file_contents)}")
         # print(f"{get_character_counts(file_contents)}")
         word_count = get_word_count(file_contents)
+        print(f"Found {word_count} total words")
+        return
         char_hash = get_character_counts(file_contents)
         report = generate_report(char_hash, word_count, book_to_examine)
         print(report)
 
 
-def get_word_count(str_text):
-    return len(str_text.split())
+
 
 
 def get_character_counts(str_text):
