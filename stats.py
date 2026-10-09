@@ -1,38 +1,28 @@
-
 # 
-def get_word_count(str_text):
-    return len(str_text.split())
+def get_num_words(text:str) -> int:
+    words = text.split()
+    return len(words)
 # 
-
-def get_character_counts(str_text):
-    char_counts = {}
-
-    for char in str_text:
-        lower_case = char.lower()
-        if lower_case not in char_counts:
-            char_counts[lower_case] = 1
+def get_character_dict(text: str) -> dict[str, int]:
+    chars = {}
+    for c in text:
+        lowered = c.lower()
+        if lowered in chars:
+            chars[lowered] += 1
         else:
-            char_counts[lower_case] += 1
-
-    # print(char_counts)
-    return char_counts
+            chars[lowered] = 1
+    return chars
 # 
-def sort_on(character_count: tuple[str, int]) -> int:
-    return character_count[1]
+def sort_on(char_count: tuple[str, int]) -> int:
+    return char_count[1]
 # 
-def chars_dict_to_sorted_list(char_count_dict: dict[str, int]) -> list[tuple[str, int]]:
-    output = []
+def chars_dict_to_sorted_list(num_chars_dict: dict[str, int]) -> list[tuple[str, int]]:
+    chars_list: list[tuple[str, int]] = []
+    for char in num_chars_dict:
+        count = num_chars_dict[char]
+        chars_list.append((char, count))
     # 
-    for character in char_count_dict:
-        count = char_count_dict[character]
-        output.append((character, count))
-
-    
-    # 
-    return sorted(output, reverse=True, key=sort_on)
-
-
-    
+    return sorted(chars_list, reverse=True, key=sort_on)
 # 
 """
 def generate_report(dic_char_count, word_count, book_title ):

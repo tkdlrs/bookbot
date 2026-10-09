@@ -1,22 +1,22 @@
 from stats import (
-    get_word_count, 
-    get_character_counts,
-    chars_dict_to_sorted_list
+    chars_dict_to_sorted_list,
+    get_character_dict,
+    get_num_words, 
 )
 # 
 def main():
-    book_to_examine = "./books/frankenstein.txt"
-    with open(book_to_examine) as f:
-        file_contents = f.read()
-        # print(file_contents)
-        # print(f"The word count is {get_word_count(file_contents)}")
-        # print(f"{get_character_counts(file_contents)}")
-        word_count = get_word_count(file_contents)
-        print(f"Found {word_count} total words")
-        char_hash = get_character_counts(file_contents)
-        sorted_list = chars_dict_to_sorted_list(char_hash)
-        print(sorted_list)
-        # report = generate_report(char_hash, word_count, book_to_examine)
+    book_path = "./books/frankenstein.txt"
+    text = get_book_text(book_path)
+    num_words = get_num_words(text)
+    char_dict = get_character_dict(text)
+    char_sorted_list = chars_dict_to_sorted_list(char_dict)
+    # 
+    print(f"Found {num_words} total words")
+    print(char_sorted_list)
+    # report = generate_report(char_hash, word_count, book_to_examine)
+# 
+def get_book_text(path: str) -> str:
+    with open(path) as f:
+        return f.read()
 # 
 main()
-
